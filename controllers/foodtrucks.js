@@ -159,7 +159,16 @@ exports.foodTruckPhotoUpload = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Please upload a file`, 400));
   }
 
-  const file = req.files.file;
+  console.log(req.files);
+
+  var file;
+  if (req.files.file == null) {
+    file = req.files[''];
+  } else {
+    file = req.files.file;
+  }
+
+  console.log(file);
 
   // Make sure the image is a photo
   if (!file.mimetype.startsWith('image')) {

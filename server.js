@@ -67,7 +67,7 @@ app.use(xss());
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 100
+  max: 100,
 });
 app.use(limiter);
 
@@ -95,6 +95,8 @@ app.use('/api/v1/grouporders', grouporders);
 app.use('/api/v1/groupmemberorders', groupmemberorders);
 app.use('/api/v1/groupratings', groupratings);
 app.use('/api/v1/messages', messages);
+
+app.use('/image', express.static(process.env.FILE_UPLOAD_PATH));
 
 app.use(errorHandler);
 
